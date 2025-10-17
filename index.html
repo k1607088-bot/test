@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Boost Nepal - TikTok Growth">
+    <meta name="keywords" content="tiktok, Nepal, followers, likes, views">
+    <meta name="theme-color" content="#ff8c00">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Boost Nepal">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/png" href="./assets/logo.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Boost Nepal</title>
+    
+    <style>
+        :root {
+            --primary: #ff8c00;
+            --secondary: #800080;
+            --text: #1a1a1a;
+            --bg: #f8f9fa;
+            --shadow: 0 6px 12px rgba(0,0,0,0.1);
+            --radius: 12px;
+            --gradient: linear-gradient(135deg, #ff8c00, #800080);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Particle Animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 140, 0, 0.4);
+            border-radius: 50%;
+            animation: float linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(10px);
+                opacity: 0;
+            }
+        }
+
+        header {
+            background: #fff;
+            box-shadow: var(--shadow);
+            padding: 1rem clamp(0.5rem, 3vw, 1.5rem);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo img {
+            width: clamp(40px, 5vw, 50px);
+            height: clamp(40px, 5vw, 50px);
+            margin-right: 0.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--primary);
+            cursor: pointer;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #fff;
+            background: var(--gradient);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        main {
+            flex: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        section {
+            min-height: 60vh;
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: clamp(200px, 40vw, 280px);
+            padding: clamp(0.6rem, 2vw, 0.8rem);
+            border-radius: var(--radius);
+            font-weight: 500;
+            margin: 0.5rem auto;
+            background: var(--gradient);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .social-btn img {
+            width: clamp(16px, 3vw, 20px);
+            height: clamp(16px, 3vw, 20px);
+            margin-right: 0.5rem;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: center;
+            gap: clamp(0.8rem, 2vw, 1rem);
+            margin: 1.5rem 0;
+        }
+
+        .progress-step {
+            width: clamp(1.6rem, 4vw, 2rem);
+            height: clamp(1.6rem, 4vw, 2rem);
+            background: #e0e0e0;
+            color: var(--text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            transition: all 0.3s;
+        }
+
+        .progress-step.active {
+            background: var(--gradient);
+            color: #fff;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--text);
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            line-height: 1.6;
+        }
+
+        .step {
+            display: none;
+            text-align: center;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .service-option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: #fff;
+            padding: clamp(0.6rem, 2vw, 0.8rem);
+            margin: 0.5rem auto;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            max-width: clamp(250px, 60vw, 350px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-option:hover {
+            background: var(--gradient);
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .service-option img {
+            width: clamp(16px, 3vw, 20px);
+            height: clamp(16px, 3vw, 20px);
+        }
+
+        input, label {
+            max-width: clamp(220px, 50vw, 350px);
+            padding: clamp(0.6rem, 2vw, 0.8rem);
+            margin: 0.5rem auto;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            display: block;
+            transition: all 0.3s;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(255, 140, 0, 0.3);
+        }
+
+        button {
+            padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
+            margin: 0.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+        }
+
+        .btn-back {
+            background: #666;
+            color: #fff;
+        }
+
+        .btn-primary:hover, .btn-back:hover {
+            filter: brightness(1.1);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .total-amount {
+            font-weight: 600;
+            margin: 1rem 0;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+        }
+
+        .error-message {
+            color: #ff0000;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            margin-top: 0.3rem;
+            text-align: center;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        #servicesSection {
+            padding: clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1rem);
+            text-align: center;
+        }
+
+        #servicesSection .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(0.8rem, 2.5vw, 1.2rem);
+            margin-top: clamp(1rem, 3vw, 1.5rem);
+            max-width: clamp(300px, 90vw, 400px);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .service-item {
+            background: #fff;
+            padding: clamp(0.8rem, 2.5vw, 1.2rem);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideUp 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .service-item img {
+            width: clamp(28px, 6vw, 36px);
+            height: clamp(28px, 6vw, 36px);
+            margin-bottom: clamp(0.5rem, 1.5vw, 0.75rem);
+            object-fit: contain;
+        }
+
+        .service-item h3 {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: clamp(0.3rem, 1vw, 0.5rem);
+        }
+
+        .service-item p {
+            font-size: clamp(0.75rem, 2.2vw, 0.85rem);
+            color: #666;
+            line-height: 1.5;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        #homeSection {
+            text-align: center;
+            padding: clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1rem);
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .hero p {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            max-width: clamp(400px, 80vw, 600px);
+            margin: 0.75rem auto;
+            color: #666;
+        }
+
+        .hero-btn {
+            padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+        }
+
+        .hero-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .smm-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(150px, 40vw, 180px), 1fr));
+            gap: clamp(1rem, 3vw, 1.5rem);
+            margin-top: 1.5rem;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: clamp(0.8rem, 2vw, 1rem);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s;
+            animation: slideUp 0.5s ease-in-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .feature-card img {
+            width: clamp(32px, 5vw, 40px);
+            height: clamp(32px, 5vw, 40px);
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card h3 {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: 600;
+        }
+
+        .scanner-img {
+            max-width: clamp(160px, 40vw, 200px);
+            margin: 1rem auto;
+            display: block;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        #contactSection {
+            text-align: center;
+            padding: clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1rem);
+        }
+
+        #contactSection .contact-info {
+            max-width: clamp(300px, 80vw, 600px);
+            margin: 1rem auto;
+            line-height: 1.6;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            color: #666;
+        }
+
+        footer {
+            background: var(--text);
+            color: #fff;
+            padding: clamp(1rem, 3vw, 1.5rem);
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.75rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        .footer-btn {
+            padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            font-weight: 600;
+        }
+
+        .footer-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Large screens */
+        @media (min-width: 1200px) {
+            .header-container {
+                padding: 0 2rem;
+            }
+
+            main {
+                padding: 2rem;
+            }
+
+            #servicesSection .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-item {
+                padding: 1.5rem;
+            }
+
+            .service-item img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .service-item h3 {
+                font-size: 1.4rem;
+            }
+
+            .service-item p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Tablets and medium screens */
+        @media (max-width: 1024px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            #servicesSection .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .service-item {
+                padding: 1.2rem;
+            }
+
+            .service-item img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .service-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .service-item p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Mobile devices */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                padding: 1rem;
+                box-shadow: var(--shadow);
+                z-index: 999;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .logo h1 {
+                font-size: clamp(1.1rem, 3vw, 1.5rem);
+            }
+
+            .logo img {
+                width: clamp(35px, 5vw, 40px);
+                height: clamp(35px, 5vw, 40px);
+            }
+
+            .hero h1 {
+                font-size: clamp(1.6rem, 4vw, 2rem);
+            }
+
+            .hero p {
+                font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            }
+
+            .hero-btn {
+                padding: clamp(0.7rem, 2vw, 0.8rem) clamp(1.2rem, 3vw, 1.5rem);
+                font-size: clamp(0.85rem, 2.5vw, 0.9rem);
+            }
+
+            #servicesSection .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .smm-features {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+
+            h2 {
+                font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+            }
+
+            .progress-step {
+                width: clamp(1.4rem, 4vw, 1.8rem);
+                height: clamp(1.4rem, 4vw, 1.8rem);
+                font-size: clamp(0.75rem, 2vw, 0.85rem);
+            }
+
+            input, label {
+                max-width: clamp(200px, 60vw, 300px);
+                padding: clamp(0.5rem, 2vw, 0.7rem);
+            }
+
+            .social-btn {
+                max-width: clamp(180px, 50vw, 240px);
+                padding: clamp(0.5rem, 2vw, 0.7rem);
+            }
+
+            .service-item {
+                padding: 1rem;
+                min-height: 180px;
+            }
+
+            .service-item img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .service-item h3 {
+                font-size: 1.1rem;
+            }
+
+            .service-item p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .logo h1 {
+                font-size: clamp(1rem, 3vw, 1.3rem);
+            }
+
+            .logo img {
+                width: clamp(30px, 5vw, 35px);
+                height: clamp(30px, 5vw, 35px);
+            }
+
+            .nav-menu a {
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+                padding: clamp(0.3rem, 1vw, 0.4rem) clamp(0.6rem, 2vw, 0.8rem);
+            }
+
+            .hero h1 {
+                font-size: clamp(1.4rem, 4vw, 1.6rem);
+            }
+
+            .hero p {
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+
+            .hero-btn {
+                padding: clamp(0.6rem, 2vw, 0.7rem) clamp(1rem, 3vw, 1.2rem);
+                font-size: clamp(0.8rem, 2.5vw, 0.85rem);
+            }
+
+            h2 {
+                font-size: clamp(1.3rem, 3.5vw, 1.5rem);
+            }
+
+            .service-item h3 {
+                font-size: clamp(1rem, 3vw, 1.1rem);
+            }
+
+            .service-item p {
+                font-size: clamp(0.75rem, 2.2vw, 0.8rem);
+            }
+
+            .service-item img {
+                width: clamp(28px, 5vw, 32px);
+                height: clamp(28px, 5vw, 32px);
+            }
+
+            .feature-card h3 {
+                font-size: clamp(1rem, 3vw, 1.1rem);
+            }
+
+            .feature-card img {
+                width: clamp(30px, 5vw, 36px);
+                height: clamp(30px, 5vw, 36px);
+            }
+
+            .scanner-img {
+                max-width: clamp(140px, 40vw, 180px);
+            }
+
+            .total-amount {
+                font-size: clamp(0.85rem, 2.5vw, 1rem);
+            }
+
+            .progress-step {
+                width: clamp(1.4rem, 4vw, 1.6rem);
+                height: clamp(1.4rem, 4vw, 1.6rem);
+                font-size: clamp(0.7rem, 2vw, 0.8rem);
+            }
+
+            .service-item {
+                padding: 0.8rem;
+                min-height: 160px;
+            }
+
+            input, label {
+                max-width: clamp(180px, 60vw, 260px);
+                padding: clamp(0.5rem, 2vw, 0.6rem);
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+
+            button {
+                padding: clamp(0.6rem, 2vw, 0.7rem) clamp(1rem, 3vw, 1.2rem);
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+
+            .social-btn {
+                max-width: clamp(160px, 50vw, 200px);
+                padding: clamp(0.5rem, 2vw, 0.6rem);
+            }
+
+            .contact-info {
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+
+            footer p {
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+
+            .footer-btn {
+                padding: clamp(0.6rem, 2vw, 0.7rem) clamp(1rem, 3vw, 1.2rem);
+                font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            }
+        }
+
+        /* Ultra-small screens */
+        @media (max-width: 320px) {
+            .logo img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .logo h1 {
+                font-size: 1rem;
+            }
+
+            .nav-menu a {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+
+            .hero p {
+                font-size: 0.8rem;
+            }
+
+            .hero-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            #servicesSection .services-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .smm-features {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item {
+                padding: 0.6rem;
+                min-height: 140px;
+            }
+
+            .service-item img {
+                width: 28px;
+                height: 28px;
+            }
+
+            .service-item h3 {
+                font-size: 0.95rem;
+            }
+
+            .service-item p {
+                font-size: 0.75rem;
+            }
+
+            input, label {
+                max-width: 100%;
+                padding: 0.5rem;
+            }
+
+            .social-btn {
+                max-width: 100%;
+                padding: 0.5rem;
+            }
+
+            .scanner-img {
+                max-width: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Animation Container -->
+    <div class="particles"></div>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.jpg" alt="Boost Nepal Logo">
+                <h1 onclick="showSection('home')">BOOST NEPAL</h1>
+            </div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" onclick="showSection('home')">Home</a>
+                <a href="#booster" onclick="showSection('booster')">Boost Now</a>
+                <a href="#services" onclick="showSection('services')">Services</a>
+                <a href="#contact" onclick="showSection('contact')">Contact</a>
+            </nav>
+            <i class="fas fa-bars hamburger" id="hamburger"></i>
+        </div>
+    </header>
+
+    <main>
+        <section id="homeSection" class="active">
+            <div class="hero">
+                <h1>Boost Your TikTok</h1>
+                <p>Go viral with Boost Nepal's expert TikTok growth solutions. Get real followers, likes, and views fast!</p>
+                <button class="hero-btn" onclick="showSection('booster')">BOOST NOW</button>
+            </div>
+            <div class="smm-features">
+                <div class="feature-card">
+                    <img src="https://img.icons8.com/color/48/000000/crowd.png" alt="Grow Followers">
+                    <h3>Grow Followers</h3>
+                    <p>Expand your audience.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="https://img.icons8.com/color/48/000000/like.png" alt="Increase Likes">
+                    <h3>Increase Likes</h3>
+                    <p>Boost engagement.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="https://img.icons8.com/color/48/000000/visible.png" alt="Boost Views">
+                    <h3>Boost Views</h3>
+                    <p>Amplify reach.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicesSection">
+            <h2>Our TikTok Services</h2>
+            <p>Go viral on TikTok with our targeted growth packages. Get real followers, likes, and views to boost your presence and reach more people. Let’s make your TikTok account explode!</p>
+            <div class="services-grid">
+                <div class="service-item">
+                    <img src="https://img.icons8.com/color/48/000000/tiktok.png" alt="TikTok">
+                    <h3>TikTok Growth</h3>
+                    <p><strong>Followers:</strong> Rs.0.6<br><strong>Likes:</strong> Rs.0.1<br><strong>Views:</strong> Rs.0.005</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="boosterSection">
+            <h2>TikTok Growth</h2>
+            <div class="progress-bar">
+                <div class="progress-step active" data-step="1">1</div>
+                <div class="progress-step" data-step="2">2</div>
+            </div>
+
+            <div class="step active" id="step1">
+                <h3 style="font-weight: 500;">Choose Service</h3>
+                <p>Pick what you want to boost on TikTok!</p>
+                <div class="service-option" onclick="selectService('Followers - Rs.0.6')">
+                    <img src="https://img.icons8.com/color/48/000000/crowd.png" alt="Followers">
+                    Followers - Rs.0.6
+                </div>
+                <div class="service-option" onclick="selectService('Likes - Rs.0.1')">
+                    <img src="https://img.icons8.com/color/48/000000/like.png" alt="Likes">
+                    Likes - Rs.0.1
+                </div>
+                <div class="service-option" onclick="selectService('Views - Rs.0.005')">
+                    <img src="https://img.icons8.com/color/48/000000/visible.png" alt="Views">
+                    Views - Rs.0.005
+                </div>
+            </div>
+
+            <div class="step" id="step2">
+                <h3 style="font-weight: 500;">Enter Quantity</h3>
+                <h4 id="serviceDisplay"></h4>
+                <input type="number" id="quantity" min="100" placeholder="Enter Quantity (Min: 100)" required>
+                <p class="error-message" id="error">Minimum quantity is 100.</p>
+                <p class="total-amount">Total: <span id="totalAmount">Rs. 0</span></p>
+                <div style="text-align: center;">
+                    <button class="btn-back" onclick="goBack(1)">Back</button>
+                    <button class="btn-primary" id="nextBtn" onclick="goToPayment()" disabled>Pay Now</button>
+                </div>
+            </div>
+
+            <div class="step" id="paymentStep">
+                <h3 style="font-weight: 500;">Complete Payment</h3>
+                <p id="paymentDisplay"></p>
+                <p class="total-amount">Total: <span id="paymentTotal"></span></p>
+                <img src="qr.jpg" alt="QR Code" class="scanner-img">
+                <label>
+                    <input type="checkbox" id="paymentConfirm">
+                    I have completed the payment and taken a screenshot
+                </label>
+                <div style="text-align: center;">
+                    <button class="btn-back" onclick="goBack(2)">Back</button>
+                    <button class="btn-primary" id="submitBtn" onclick="submitOrder()" disabled>Submit Order</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contactSection">
+            <h2>Contact Us</h2>
+            <p class="contact-info">Reach out to us for TikTok growth support. We're here to help you go viral!</p>
+            <p class="contact-info">Email: officialboostnepal@gmail.com</p>
+            <p class="contact-info">Phone: +977 9826660865</p>
+            <p class="contact-info">Our team is available 24/7 to assist with your TikTok growth needs.</p>
+            <div id="socialButtons">
+                <a href="https://wa.me/9779826660865?text=Hello%20Boost%20Nepal%2C%20I%20have%20a%20TikTok%20growth%20query" target="_blank" class="social-btn">
+                    <img src="https://img.icons8.com/color/48/000000/whatsapp.png" alt="WhatsApp">
+                    WhatsApp
+                </a>
+                <a href="https://www.instagram.com/boost_np" target="_blank" class="social-btn">
+                    <img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt="Instagram">
+                    Instagram
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h3>Have a Problem?</h3>
+        <p>We're here to help with your TikTok growth! Reach out anytime for support.</p>
+        <button class="footer-btn" onclick="showSection('contact')">Contact Us</button>
+    </footer>
+
+    <!-- PWA Install Prompt -->
+    <div id="installPrompt" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--gradient); color: white; padding: 15px 25px; border-radius: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.3); z-index: 10000; font-weight: 600;">
+        <span>📱 Install Boost Nepal App?</span>
+        <button onclick="installApp()" style="background: white; color: var(--primary); border: none; padding: 8px 16px; border-radius: 20px; margin-left: 15px; cursor: pointer;">Install</button>
+        <button onclick="dismissInstall()" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 20px; margin-left: 10px; cursor: pointer;">Later</button>
+    </div>
+
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // PWA Install Logic
+        let deferredPrompt;
+        const installPrompt = document.getElementById('installPrompt');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installPrompt.style.display = 'block';
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('App installed');
+            installPrompt.style.display = 'none';
+            deferredPrompt = null;
+        });
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted install');
+                    }
+                    deferredPrompt = null;
+                    installPrompt.style.display = 'none';
+                });
+            }
+        }
+
+        function dismissInstall() {
+            installPrompt.style.display = 'none';
+            deferredPrompt = null;
+        }
+
+        let selectedService = '';
+        let totalAmount = 0;
+
+        const pricing = {
+            'Followers - Rs.0.6': 0.6,
+            'Likes - Rs.0.1': 0.1,
+            'Views - Rs.0.005': 0.005
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hamburger menu toggle
+            document.getElementById('hamburger').addEventListener('click', () => {
+                document.getElementById('navMenu').classList.toggle('active');
+            });
+
+            // Add event listeners
+            const input = document.getElementById('quantity');
+            const nextBtn = document.getElementById('nextBtn');
+            const errorMsg = document.getElementById('error');
+            if (input) {
+                input.addEventListener('input', () => {
+                    const quantity = parseInt(input.value) || 0;
+                    if (quantity > 0 && quantity < 100) {
+                        errorMsg.classList.add('active');
+                        nextBtn.disabled = true;
+                    } else {
+                        errorMsg.classList.remove('active');
+                        nextBtn.disabled = quantity <= 0;
+                        updateTotal();
+                    }
+                });
+            }
+            const checkbox = document.getElementById('paymentConfirm');
+            const submitBtn = document.getElementById('submitBtn');
+            if (checkbox && submitBtn) {
+                checkbox.addEventListener('change', () => {
+                    submitBtn.disabled = !checkbox.checked;
+                });
+            }
+
+            // Create particles for background animation
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = Math.random() * 5 + 5 + 's';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                document.querySelector('.particles').appendChild(particle);
+                setTimeout(() => particle.remove(), 10000);
+            }
+
+            setInterval(createParticle, 500);
+        });
+
+        function showSection(section) {
+            document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(`${section}Section`).classList.add('active');
+            document.getElementById('navMenu').classList.remove('active');
+            if (section === 'booster') resetForm();
+            document.getElementById('socialButtons').style.display = section === 'contact' ? 'block' : 'none';
+        }
+
+        function resetForm() {
+            selectedService = '';
+            totalAmount = 0;
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+            document.querySelectorAll('.progress-step').forEach(step => {
+                step.classList.toggle('active', parseInt(step.dataset.step) === 1);
+            });
+            const input = document.getElementById('quantity');
+            if (input) input.value = '';
+            const checkbox = document.getElementById('paymentConfirm');
+            if (checkbox) checkbox.checked = false;
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) submitBtn.disabled = true;
+            const nextBtn = document.getElementById('nextBtn');
+            if (nextBtn) nextBtn.disabled = true;
+            const errorMsg = document.getElementById('error');
+            if (errorMsg) errorMsg.classList.remove('active');
+            const display = document.getElementById('serviceDisplay');
+            if (display) display.textContent = '';
+            const total = document.getElementById('totalAmount');
+            if (total) total.textContent = 'Rs. 0';
+            const paymentDisplay = document.getElementById('paymentDisplay');
+            if (paymentDisplay) paymentDisplay.textContent = '';
+            const paymentTotal = document.getElementById('paymentTotal');
+            if (paymentTotal) paymentTotal.textContent = 'Rs. 0';
+        }
+
+        function selectService(service) {
+            selectedService = service;
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step2').classList.add('active');
+            document.querySelectorAll('.progress-step').forEach(step => {
+                step.classList.toggle('active', parseInt(step.dataset.step) === 2);
+            });
+            document.getElementById('serviceDisplay').textContent = service;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const quantity = parseInt(document.getElementById('quantity').value) || 0;
+            const errorMsg = document.getElementById('error');
+            const nextBtn = document.getElementById('nextBtn');
+            if (quantity > 0 && quantity < 100) {
+                errorMsg.classList.add('active');
+                nextBtn.disabled = true;
+                document.getElementById('totalAmount').textContent = 'Rs. 0';
+                return;
+            } else {
+                errorMsg.classList.remove('active');
+                nextBtn.disabled = quantity <= 0;
+            }
+            const rate = pricing[selectedService];
+            totalAmount = quantity > 0 ? quantity * rate : 0;
+            document.getElementById('totalAmount').textContent = `Rs. ${totalAmount.toFixed(2)}`;
+        }
+
+        function goToPayment() {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const errorMsg = document.getElementById('error');
+            if (!quantity || quantity < 100) {
+                errorMsg.classList.add('active');
+                return;
+            }
+            errorMsg.classList.remove('active');
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('paymentStep').classList.add('active');
+            document.getElementById('paymentDisplay').textContent = `${selectedService} x ${quantity}`;
+            document.getElementById('paymentTotal').textContent = `Rs. ${totalAmount.toFixed(2)}`;
+        }
+
+        function goBack(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.progress-step').forEach(s => {
+                s.classList.toggle('active', parseInt(s.dataset.step) === step);
+            });
+            if (step === 1) {
+                document.getElementById('step1').classList.add('active');
+                selectedService = '';
+                totalAmount = 0;
+            } else if (step === 2) {
+                document.getElementById('step2').classList.add('active');
+            }
+        }
+
+        function submitOrder() {
+            const quantity = document.getElementById('quantity').value;
+            const message = `New TikTok Order:\nService: ${selectedService}\nQuantity: ${quantity}\nTotal: Rs. ${totalAmount.toFixed(2)}\nPayment: Completed (Screenshot to be sent)`;
+            const whatsappUrl = `https://wa.me/9779826660865?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            alert('Thank you for your order! Please send the payment screenshot via WhatsApp.');
+            resetForm();
+        }
+    </script>
+</body>
+</html>
